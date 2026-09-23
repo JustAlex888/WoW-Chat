@@ -1,0 +1,12 @@
+WoW Chat v0.9.1 — переход с тестовых сборок
+
+Папка аддона теперь называется WoW_Chat.
+
+Если нужно сохранить историю/резерв из UWoW_Chat после ПОЛНОГО перезапуска клиента,
+один раз скопируйте файл:
+WTF\Account\<ACCOUNT>\SavedVariables\UWoW_Chat.lua
+в:
+WTF\Account\<ACCOUNT>\SavedVariables\WoW_Chat.lua
+
+Переменная SavedVariables внутри аддона по-прежнему называется UWoWChatDB.
+Для будущей публичной версии структура уже соответствует новому имени WoW_Chat.

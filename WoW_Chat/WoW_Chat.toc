@@ -1,0 +1,19 @@
+## Interface: 70300
+## Title: WoW Chat
+## Notes: Persistent chat history, copy window and Blizzard Chat settings backup.
+## Notes-ruRU: Постоянная история чата, копирование и резерв настроек Blizzard Chat.
+## Version: 0.9.1
+## Author: JustAlex888
+## X-License: MIT
+## X-Credits: OpenAI ChatGPT (development assistance)
+## X-Category: Chat
+## SavedVariables: UWoWChatDB
+
+Locale/Locale.lua
+Locale/enUS.lua
+Locale/ruRU.lua
+Core.lua
+History.lua
+Copy.lua
+ChatBackup.lua
+Options.lua
