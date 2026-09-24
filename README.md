@@ -4,13 +4,14 @@
 
 Lightweight persistent chat history, copy, and Blizzard Chat settings backup for **World of Warcraft: Legion 7.3.5**.
 
-> Current public testing version: **v0.9.1 (pre-release)**
+> Current stable release: **v1.0.0**
 
 ## Features
 
 - Persistent chat history between sessions
 - Separate history storage for each character
 - Copy window for saved chat history
+- Copy window opens at the newest saved messages
 - Preserves message colors in the copy window
 - Optional **Clean Text** mode for plain-text copying
 - Blizzard Chat configuration backup and restore
@@ -35,11 +36,12 @@ Lightweight persistent chat history, copy, and Blizzard Chat settings backup for
 
 ## Installation
 
-1. Download the latest release ZIP.
+1. Download `WoW_Chat_v1.0.0.zip` from the latest Release.
 2. Extract the `WoW_Chat` folder into:
    `World of Warcraft/Interface/AddOns/`
-3. Restart the game client or run `/reload` if the addon was already present.
-4. Open the settings with `/wowchat`.
+3. When updating, replace the existing `WoW_Chat` folder; do not delete WTF or SavedVariables.
+4. Restart the game client or run `/reload` if the addon was already present.
+5. Open the settings with `/wowchat`.
 
 ## Commands
 

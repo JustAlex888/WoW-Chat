@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.0.0
+
+- First stable release for Legion 7.3.5 (Interface 70300).
+- Stabilized long-history copy-window layout and opened it at newest messages.
+- Added the saved-history Current value indicator.
+- Improved English backup-description layout.
+
 ## v0.9.1
 
 - Renamed the addon folder to `WoW_Chat`.
