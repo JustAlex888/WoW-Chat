@@ -2,7 +2,7 @@ local ADDON_NAME, ns = ...
 
 ns.ADDON_NAME = ADDON_NAME
 ns.DB_VERSION = 4
-ns.VERSION = (GetAddOnMetadata and GetAddOnMetadata(ADDON_NAME, "Version")) or "0.9.1"
+ns.VERSION = (GetAddOnMetadata and GetAddOnMetadata(ADDON_NAME, "Version")) or "1.0.0"
 
 local defaults = {
     enabled = true,

@@ -1,4 +1,4 @@
-WoW Chat v0.9.1 — переход с тестовых сборок
+WoW Chat v1.0.0 — переход с тестовых сборок
 
 Папка аддона теперь называется WoW_Chat.
 
@@ -9,4 +9,4 @@ WTF\Account\<ACCOUNT>\SavedVariables\UWoW_Chat.lua
 WTF\Account\<ACCOUNT>\SavedVariables\WoW_Chat.lua
 
 Переменная SavedVariables внутри аддона по-прежнему называется UWoWChatDB.
-Для будущей публичной версии структура уже соответствует новому имени WoW_Chat.
+Для публичной версии структура соответствует имени WoW_Chat.

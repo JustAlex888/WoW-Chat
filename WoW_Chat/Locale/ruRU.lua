@@ -7,6 +7,7 @@ ns.Locales.ruRU = {
 
     ENABLE_HISTORY = "Включить историю",
     MAX_LINES = "Количество сохраняемых строк:",
+    CURRENT_VALUE = "Текущее значение: %d",
     RANGE_RECOMMENDED = "Диапазон: 200–5000. Рекомендуемое значение: 2000.",
     SHOW_COPY_BUTTON = "Показывать кнопку копирования",
     CLEAR_CURRENT = "Очистить текущее окно",

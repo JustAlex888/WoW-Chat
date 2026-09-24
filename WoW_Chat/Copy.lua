@@ -10,6 +10,7 @@ local measureString
 local copyButtons = {}
 local currentChatFrame
 local cleanMode = false
+local pendingReveal = false
 
 local function Clamp01(value)
     value = tonumber(value) or 1
@@ -256,6 +257,39 @@ local function ResetCleanMode()
     end
 end
 
+local function FinalizeInitialLayout()
+    if not pendingReveal then
+        return
+    end
+
+    pendingReveal = false
+
+    if not copyFrame or not copyFrame:IsShown() or not editBox or not scrollFrame then
+        return
+    end
+
+    -- Legion's multiline EditBox can finish wrapping long formatted text one UI
+    -- frame after SetText/SetHeight. Re-measure once after that layout pass so
+    -- selection highlighting and the ScrollFrame use the final geometry.
+    local text = editBox:GetText() or ""
+
+    editBox:SetHeight(MeasureTextHeight(text))
+    scrollFrame:UpdateScrollChildRect()
+
+    -- The most recent chat messages are normally the ones the player wants to
+    -- inspect or copy. Start at the end of the history after the final layout
+    -- pass so the copy window opens on the newest saved lines, not the oldest.
+    editBox:SetCursorPosition(string.len(text))
+    editBox.handleCursorChange = false
+    editBox.selectionDragActive = false
+    RestoreScrollPosition(GetMaxVerticalScroll())
+
+    copyFrame:SetAlpha(1)
+    copyFrame:EnableMouse(true)
+    editBox:EnableMouse(true)
+    editBox:SetFocus()
+end
+
 local function SelectAllText()
     if not editBox then
         return
@@ -295,14 +329,22 @@ local function CreateCopyFrame()
     end)
 
     copyFrame:SetScript("OnHide", function()
+        pendingReveal = false
         ResetCleanMode()
         currentChatFrame = nil
+        copyFrame:SetAlpha(1)
+        copyFrame:EnableMouse(true)
 
         if editBox then
             editBox.selectionDragActive = false
             editBox.handleCursorChange = false
+            editBox:EnableMouse(true)
             editBox:ClearFocus()
         end
+    end)
+
+    copyFrame:SetScript("OnUpdate", function()
+        FinalizeInitialLayout()
     end)
 
     copyFrame:SetBackdrop({
@@ -449,11 +491,20 @@ local function OpenCopyWindow(frame)
 
     currentChatFrame = frame
     ResetCleanMode()
+
+    -- Build and lay out the long multiline EditBox before revealing the window.
+    -- A second geometry pass on the next UI frame avoids the intermittent
+    -- selection-highlight drift seen on Legion 7.3.5 with long histories.
+    pendingReveal = false
+    copyFrame:SetAlpha(0)
+    copyFrame:EnableMouse(false)
+    editBox:EnableMouse(false)
     copyFrame:Show()
+
     UpdateEditBox(false)
     editBox.selectionDragActive = false
     editBox.handleCursorChange = false
-    editBox:SetFocus()
+    pendingReveal = true
 end
 
 local function CreateCopyButton(index, frame)

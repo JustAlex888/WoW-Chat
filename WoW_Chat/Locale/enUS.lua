@@ -7,13 +7,14 @@ ns.Locales.enUS = {
 
     ENABLE_HISTORY = "Enable history",
     MAX_LINES = "Saved lines:",
+    CURRENT_VALUE = "Current value: %d",
     RANGE_RECOMMENDED = "Range: 200–5000. Recommended value: 2000.",
     SHOW_COPY_BUTTON = "Show copy button",
     CLEAR_CURRENT = "Clear current window",
     CLEAR_CHARACTER = "Clear character history",
 
     BACKUP_HEADER = "Chat settings backup",
-    BACKUP_HELP = "The addon keeps a separate backup for each character. If a suspicious reset is detected, it will offer restoration and will not overwrite a good backup with empty settings.",
+    BACKUP_HELP = "The addon keeps a separate backup for each character.\nIf a suspicious reset is detected, it will offer restoration\nand will not overwrite a good backup with empty settings.",
     BACKUP_STATUS_NONE = "Chat settings backup: not created yet",
     BACKUP_STATUS_FORMAT = "Chat settings backup: %s",
     SAVE_CURRENT_CONFIG = "Save current configuration",

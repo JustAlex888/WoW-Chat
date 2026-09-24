@@ -4,6 +4,7 @@ local panel
 local enabledCheck
 local copyButtonCheck
 local maxLinesEdit
+local currentValueText
 local backupStatus
 
 local function CreateCheckBox(parent, text, x, y)
@@ -35,7 +36,12 @@ local function Refresh()
 
     enabledCheck:SetChecked(ns.db.settings.enabled and true or false)
     copyButtonCheck:SetChecked(ns.db.settings.copyButton and true or false)
-    maxLinesEdit:SetText(tostring(ns.db.settings.maxLines or 2000))
+    local currentMaxLines = tonumber(ns.db.settings.maxLines) or 2000
+    maxLinesEdit:SetText(tostring(currentMaxLines))
+
+    if currentValueText then
+        currentValueText:SetText(string.format(ns.L.CURRENT_VALUE, currentMaxLines))
+    end
 
     if backupStatus then
         local savedAt = ns.ChatBackup_GetSavedAt and ns.ChatBackup_GetSavedAt() or nil
@@ -53,6 +59,11 @@ local function ApplyMaxLines()
     value = ns.History_SetMaxLines(value)
 
     maxLinesEdit:SetText(tostring(value))
+
+    if currentValueText then
+        currentValueText:SetText(string.format(ns.L.CURRENT_VALUE, value))
+    end
+
     maxLinesEdit:ClearFocus()
 end
 
@@ -101,6 +112,10 @@ function ns.Options_Init()
     maxLinesEdit:SetAutoFocus(false)
     maxLinesEdit:SetNumeric(true)
     maxLinesEdit:SetMaxLetters(4)
+
+    currentValueText = panel:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+    currentValueText:SetPoint("LEFT", maxLinesEdit, "RIGHT", 12, 0)
+    currentValueText:SetText(string.format(ns.L.CURRENT_VALUE, ns.db.settings.maxLines or 2000))
 
     maxLinesEdit:SetScript("OnEnterPressed", function()
         ApplyMaxLines()
@@ -210,4 +225,7 @@ function ns.Options_Init()
 
     panel:SetScript("OnShow", Refresh)
     InterfaceOptions_AddCategory(panel)
+
+    -- Populate persisted values immediately as well as on every panel show.
+    Refresh()
 end
