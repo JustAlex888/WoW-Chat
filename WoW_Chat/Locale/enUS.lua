@@ -8,7 +8,7 @@ ns.Locales.enUS = {
     ENABLE_HISTORY = "Enable history",
     MAX_LINES = "Saved lines:",
     CURRENT_VALUE = "Current value: %d",
-    RANGE_RECOMMENDED = "Range: 200–5000. Recommended value: 2000.",
+    RANGE_RECOMMENDED = "Range: 200–2000. Recommended value: 1000.",
     SHOW_COPY_BUTTON = "Show copy button",
     CLEAR_CURRENT = "Clear current window",
     CLEAR_CHARACTER = "Clear character history",
@@ -55,3 +55,4 @@ ns.Locales.enUS = {
     HELP_OPEN = "/wowchat — open settings",
     HELP_LANG = "/wowchat lang auto|ruRU|enUS — set interface language",
 }
+

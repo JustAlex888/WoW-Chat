@@ -32,8 +32,16 @@ local function ColorCode(r, g, b)
     return string.format("|cff%02x%02x%02x", rr, gg, bb)
 end
 
+local function StripInlineTextures(text)
+    -- Legion 7.3.5 multiline EditBox selection geometry breaks down on very
+    -- long rich-text strings containing many inline texture escapes. Keep the
+    -- saved history untouched, but omit those non-text glyphs from the copy
+    -- surface so native selection remains aligned.
+    return (text or ""):gsub("|T.-|t", "")
+end
+
 local function CleanText(text)
-    text = text:gsub("|T.-|t", "")
+    text = StripInlineTextures(text)
     text = text:gsub("|H.-|h(.-)|h", "%1")
     text = text:gsub("|c%x%x%x%x%x%x%x%x", "")
     text = text:gsub("|r", "")
@@ -42,7 +50,7 @@ local function CleanText(text)
 end
 
 local function ColorizeEntry(entry)
-    local text = entry.text or ""
+    local text = StripInlineTextures(entry.text or "")
     local base = ColorCode(entry.r, entry.g, entry.b)
 
     -- WoW color codes are not a stack. Re-apply the original ChatFrame line
@@ -567,3 +575,4 @@ function ns.Copy_Init()
     CreateCopyFrame()
     ns.Copy_RefreshButtons()
 end
+

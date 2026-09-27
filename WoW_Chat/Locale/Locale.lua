@@ -63,3 +63,4 @@ function ns.Locale_Set(mode)
     ns.Locale_Refresh()
     return true
 end
+

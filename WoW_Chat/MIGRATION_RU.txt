@@ -10,3 +10,4 @@ WTF\Account\<ACCOUNT>\SavedVariables\WoW_Chat.lua
 
 Переменная SavedVariables внутри аддона по-прежнему называется UWoWChatDB.
 Для публичной версии структура соответствует имени WoW_Chat.
+

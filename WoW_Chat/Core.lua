@@ -2,11 +2,11 @@ local ADDON_NAME, ns = ...
 
 ns.ADDON_NAME = ADDON_NAME
 ns.DB_VERSION = 4
-ns.VERSION = (GetAddOnMetadata and GetAddOnMetadata(ADDON_NAME, "Version")) or "1.0.0"
+ns.VERSION = (GetAddOnMetadata and GetAddOnMetadata(ADDON_NAME, "Version")) or "1.0.1"
 
 local defaults = {
     enabled = true,
-    maxLines = 2000,
+    maxLines = 1000,
     copyButton = true,
     language = "auto",
 }
@@ -35,6 +35,16 @@ local function PrepareDatabase()
     end
 
     ApplyDefaults(UWoWChatDB.settings, defaults)
+
+    -- v1.0.1: keep existing values up to the new safe ceiling, clamp older
+    -- 3000–5000 settings to 2000, and use 1000 as the new-install default.
+    local maxLines = math.floor(tonumber(UWoWChatDB.settings.maxLines) or defaults.maxLines)
+    if maxLines < 200 then
+        maxLines = 200
+    elseif maxLines > 2000 then
+        maxLines = 2000
+    end
+    UWoWChatDB.settings.maxLines = maxLines
 
     -- Retired 0.1.x/0.2.x option. Clean text is temporary in the copy window.
     UWoWChatDB.settings.cleanText = nil
@@ -215,3 +225,4 @@ eventFrame:SetScript("OnEvent", function(self, event, arg1)
         end
     end
 end)
+

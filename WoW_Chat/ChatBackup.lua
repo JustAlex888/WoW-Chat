@@ -600,3 +600,4 @@ function ns.ChatBackup_Init()
         DelayedCheck()
     end
 end
+

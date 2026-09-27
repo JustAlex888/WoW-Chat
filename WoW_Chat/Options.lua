@@ -36,7 +36,7 @@ local function Refresh()
 
     enabledCheck:SetChecked(ns.db.settings.enabled and true or false)
     copyButtonCheck:SetChecked(ns.db.settings.copyButton and true or false)
-    local currentMaxLines = tonumber(ns.db.settings.maxLines) or 2000
+    local currentMaxLines = tonumber(ns.db.settings.maxLines) or 1000
     maxLinesEdit:SetText(tostring(currentMaxLines))
 
     if currentValueText then
@@ -54,7 +54,7 @@ function ns.Options_Refresh()
 end
 
 local function ApplyMaxLines()
-    local value = tonumber(maxLinesEdit:GetText()) or 2000
+    local value = tonumber(maxLinesEdit:GetText()) or 1000
 
     value = ns.History_SetMaxLines(value)
 
@@ -115,7 +115,7 @@ function ns.Options_Init()
 
     currentValueText = panel:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
     currentValueText:SetPoint("LEFT", maxLinesEdit, "RIGHT", 12, 0)
-    currentValueText:SetText(string.format(ns.L.CURRENT_VALUE, ns.db.settings.maxLines or 2000))
+    currentValueText:SetText(string.format(ns.L.CURRENT_VALUE, ns.db.settings.maxLines or 1000))
 
     maxLinesEdit:SetScript("OnEnterPressed", function()
         ApplyMaxLines()
@@ -229,3 +229,4 @@ function ns.Options_Init()
     -- Populate persisted values immediately as well as on every panel show.
     Refresh()
 end
+

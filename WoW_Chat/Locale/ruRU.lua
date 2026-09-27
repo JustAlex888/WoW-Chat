@@ -8,7 +8,7 @@ ns.Locales.ruRU = {
     ENABLE_HISTORY = "Включить историю",
     MAX_LINES = "Количество сохраняемых строк:",
     CURRENT_VALUE = "Текущее значение: %d",
-    RANGE_RECOMMENDED = "Диапазон: 200–5000. Рекомендуемое значение: 2000.",
+    RANGE_RECOMMENDED = "Диапазон: 200–2000. Рекомендуемое значение: 1000.",
     SHOW_COPY_BUTTON = "Показывать кнопку копирования",
     CLEAR_CURRENT = "Очистить текущее окно",
     CLEAR_CHARACTER = "Очистить историю персонажа",
@@ -55,3 +55,4 @@ ns.Locales.ruRU = {
     HELP_OPEN = "/wowchat — открыть настройки",
     HELP_LANG = "/wowchat lang auto|ruRU|enUS — выбрать язык интерфейса",
 }
+

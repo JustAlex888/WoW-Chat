@@ -2,7 +2,8 @@
 ## Title: WoW Chat
 ## Notes: Persistent chat history, copy window and Blizzard Chat settings backup.
 ## Notes-ruRU: Постоянная история чата, копирование и резерв настроек Blizzard Chat.
-## Version: 1.0.0
+## Version: 1.0.1
+## X-Build: WOWCHAT-RELEASE-20260927-01
 ## Author: JustAlex888
 ## X-License: MIT
 ## X-Credits: OpenAI ChatGPT (development assistance)
@@ -17,3 +18,4 @@ History.lua
 Copy.lua
 ChatBackup.lua
 Options.lua
+

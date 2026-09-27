@@ -6,7 +6,7 @@ local watcher
 local restoring = false
 
 local MIN_LINES = 200
-local MAX_LINES = 5000
+local MAX_LINES = 2000
 
 local function GetFramesStore()
     if not ns.profile then
@@ -21,7 +21,7 @@ local function GetFramesStore()
 end
 
 local function ClampLimit(value)
-    value = tonumber(value) or 2000
+    value = tonumber(value) or 1000
     value = math.floor(value)
 
     if value < MIN_LINES then
@@ -350,6 +350,11 @@ function ns.History_Init()
 
     PurgeOwnServiceMessages()
     RefreshFrames()
+
+    -- Enforce the current limit before restoring saved history into ChatFrames.
+    -- This prevents legacy 3000–5000 buffers from being replayed in full after
+    -- upgrading to the new 2000-line ceiling.
+    ns.History_SetMaxLines(ns.db.settings.maxLines)
     RestoreAll()
 
     watcher = CreateFrame("Frame")
@@ -363,3 +368,4 @@ function ns.History_Init()
         end
     end)
 end
+
