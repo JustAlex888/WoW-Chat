@@ -4,7 +4,7 @@
 
 Lightweight persistent chat history, copy, and Blizzard Chat settings backup for **World of Warcraft: Legion 7.3.5**.
 
-> Current stable release: **v1.0.0**
+> Current stable release: **v1.0.1**
 
 ## Features
 
@@ -12,13 +12,20 @@ Lightweight persistent chat history, copy, and Blizzard Chat settings backup for
 - Separate history storage for each character
 - Copy window for saved chat history
 - Copy window opens at the newest saved messages
-- Preserves message colors in the copy window
+- Preserves message colors and hyperlinks in the copy window
+- Omits inline texture/icon escapes from the copy window to keep long-history selection stable on Legion 7.3.5
 - Optional **Clean Text** mode for plain-text copying
 - Blizzard Chat configuration backup and restore
 - Protection against overwriting a good backup with an obviously reset/empty configuration
 - Russian and English interface localization
 - Language override commands for testing
 - Lightweight design focused on minimal overhead
+
+## History size
+
+- Supported range: **200–2000 lines** per chat window
+- Default and recommended value: **1000 lines**
+- Values above 2000 from older builds are capped to 2000 after updating
 
 ## Screenshots
 
@@ -36,7 +43,7 @@ Lightweight persistent chat history, copy, and Blizzard Chat settings backup for
 
 ## Installation
 
-1. Download `WoW_Chat_v1.0.0.zip` from the latest Release.
+1. Download `WoW_Chat_v1.0.1.zip` from the latest Release.
 2. Extract the `WoW_Chat` folder into:
    `World of Warcraft/Interface/AddOns/`
 3. When updating, replace the existing `WoW_Chat` folder; do not delete WTF or SavedVariables.
@@ -73,3 +80,4 @@ AI assistance was used for architecture discussion, implementation support, debu
 ## License
 
 MIT License. See [LICENSE](LICENSE).
+
